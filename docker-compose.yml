@@ -1,0 +1,38 @@
+# version: "3"
+
+# volumes:
+#   database:
+#     driver: local
+
+# services:
+#   mysql:
+#     platform: linux/amd64
+#     image: mysql:8.0.32
+#     container_name: mgt_mysql
+#     restart: always
+#     ports:
+#       - 3306:3306
+#     environment:
+#       MYSQL_DATABASE: mgt
+#       MYSQL_ALLOW_EMPTY_PASSWORD: 1
+#     volumes:
+#       - database:/var/lib/mysql
+
+version: "3.9"
+
+services:
+  turbo_db:
+    image: postgres
+    restart: always
+    ports:
+      - 6501:5432
+    environment:
+      POSTGRES_USER: turbo
+      POSTGRES_PASSWORD: turbo
+      POSTGRES_DB: turbo
+    volumes:
+      - postgres_data_turbo:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data_turbo:
+    driver: local
